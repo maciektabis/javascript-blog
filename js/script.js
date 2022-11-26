@@ -55,6 +55,7 @@ const optArticleSelector = '.post',
 	optArticleAuthorSelector = '.post-author',
 	optTagsListSelector = '.tags.list',
 	optAuthorsListSelector = '.list.authors',
+	optCloudClassPrefix = 'tag-size-',
 	optCloudClassCount = 5;
 function generateTitleLinks(customSelector = '') {
 	/* [DONE] remove contents of titleList */
@@ -123,7 +124,7 @@ function calculateTagClass(params, count) {
 	const percentage = normalizedCount / normalizedMax;
 	const classNumber = Math.floor(percentage * (optCloudClassCount - 1) + 1);
 
-	return 'tag-size-' + classNumber;
+	return optCloudClassPrefix + classNumber;
 }
 
 function generateTags() {
