@@ -105,20 +105,15 @@ function generateTitleLinks(customSelector = '') {
 generateTitleLinks();
 
 function calculateTagsParams(tags) {
-	const params = {
-		min: 99999,
-		max: 0,
-	};
-
-	for (const tag in tags) {
-		if (tags[tag] < params.min) params.min = tags[tag];
-		if (tags[tag] > params.max) params.max = tags[tag];
+	const params = {max: 0, min: 999999};
+	for (let tag in tags) {
+		params.max = Math.max(tags[tag], params.max);
+		params.min = Math.min(tags[tag], params.min);
+		console.log(tag + ' is used ' + tags[tag] + ' times');
 	}
-
 	return params;
 }
-
-function calculateTagClass(params, count) {
+function calculateTagClass(count, params) {
 	const normalizedCount = count - params.min;
 	const normalizedMax = params.max - params.min;
 	const percentage = normalizedCount / normalizedMax;
